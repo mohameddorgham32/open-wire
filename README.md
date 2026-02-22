@@ -12,6 +12,7 @@ One extension. Every model VS Code can see. Standard API. Built for agents.
 <img src="https://img.shields.io/badge/OpenAI-412991?style=for-the-badge" alt="OpenAI" />
 <img src="https://img.shields.io/badge/Google%20Gemini-886FBF?style=for-the-badge&logo=googlegemini&logoColor=white" alt="Google Gemini" />
 <img src="https://img.shields.io/badge/Copilot-000?style=for-the-badge&logo=githubcopilot&logoColor=white" alt="GitHub Copilot" />
+<img src="https://img.shields.io/badge/Ollama-000?style=for-the-badge&logo=ollama&logoColor=white" alt="Ollama" />
 
 </div>
 
@@ -33,6 +34,7 @@ Any model available through VS Code's Language Model API is automatically expose
 - **Claude** — Opus, Sonnet, Haiku
 - **GPT** — Codex, GPT-4.1, o4-mini
 - **Gemini** — Gemini Pro, Gemini Flash
+- **Ollama** — any locally running Ollama models (Llama, Qwen, DeepSeek, Mistral, etc.)
 - Any other models registered via the VS Code Language Model API
 
 Run `GET /v1/models` to see what's available in your setup.
@@ -96,6 +98,48 @@ All settings live under `openWire.server.*` in VS Code:
 - **OpenWire: Stop Server**
 - **OpenWire: Restart Server**
 - **OpenWire: Toggle Server**
+
+## Using with OpenClaw
+
+OpenWire can serve as a model provider for [OpenClaw](https://openclaw.ai) agents. Register OpenWire as a custom provider called `copilot-proxy` in your `~/.openclaw/openclaw.json`:
+
+```jsonc
+{
+  "models": {
+    "providers": {
+      "copilot-proxy": {
+        "baseUrl": "http://localhost:3030/v1",
+        "apiKey": "n/a",
+        "api": "openai-completions",
+        "authHeader": false,
+        "models": [
+          {
+            "id": "claude-sonnet-4.6",
+            "name": "Claude Sonnet 4.6",
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          }
+          // add any other models from /v1/models
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "copilot-proxy/claude-sonnet-4.6"
+      }
+    }
+  },
+  "plugins": {
+    "entries": {
+      "copilot-proxy": { "enabled": true }
+    }
+  }
+}
+```
+
+Set `authHeader: false` since OpenWire handles authentication through VS Code's Copilot session — no API keys are needed. Run `curl http://localhost:3030/v1/models` to see all available model IDs.
 
 ## Architecture
 
