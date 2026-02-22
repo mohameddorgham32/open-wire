@@ -15,16 +15,25 @@
 	},
 	"categories": [
 		"AI",
+		"Machine Learning",
 		"Other"
 	],
 	"keywords": [
-		"open-wire",
+		"openai",
+		"copilot",
+		"ollama",
+		"claude",
+		"gemini",
+		"llm",
 		"api",
 		"rest",
-		"openai",
-		"language-model",
 		"agent",
-		"copilot"
+		"language-model",
+		"ai",
+		"proxy",
+		"streaming",
+		"localhost",
+		"chat-completions"
 	],
 	"main": "./dist/extension.js",
 	"activationEvents": [
